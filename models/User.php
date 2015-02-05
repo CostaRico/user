@@ -141,6 +141,8 @@ class User extends ActiveRecord implements IdentityInterface
     public function scenarios()
     {
         return [
+
+            'default' => ['username', 'email', 'password'],
             'register' => ['username', 'email', 'password'],
             'connect'  => ['username', 'email'],
             'create'   => ['username', 'email', 'password', 'role'],
@@ -155,8 +157,8 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             // username rules
             ['username', 'required', 'on' => ['register', 'connect', 'create', 'update']],
-            ['username', 'match', 'pattern' => '/^[a-zA-ZFА-Яа-я]\w+$/u'],
-            ['username', 'string', 'min' => 3, 'max' => 25],
+            ['username', 'match', 'pattern' => '/^[a-zA-ZА-Яа-я\s]+$/u'],
+            ['username', 'string', 'min' => 3, 'max' => 99],
             ['username', 'trim'],
 
             // email rules

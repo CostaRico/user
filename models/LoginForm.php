@@ -53,6 +53,7 @@ class LoginForm extends Model
         return [
             [['login', 'password'], 'required'],
             ['login', 'trim'],
+            ['login', 'email'],
             ['password', function ($attribute) {
                 if ($this->user === null || !Password::validate($this->password, $this->user->password_hash)) {
                     $this->addError($attribute, \Yii::t('user', 'Invalid login or password'));
